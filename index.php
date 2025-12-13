@@ -9,10 +9,9 @@
 
 <h1>🎬 Movie / Film Finder</h1>
 <?php
- // Contoh teks dinamis sederhana
- $judul = "Selamat datang di Movie Finder!";
- echo "<h2>$judul</h2>";
- ?>
+$judul = "Selamat datang di Movie Finder!";
+echo "<h2>$judul</h2>";
+?>
 <div class="menu">
     <a href="laman-typefilm.php">Cari Berdasarkan Tipe</a>
 </div>

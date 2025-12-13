@@ -8,7 +8,8 @@ if (!$apiKey) {
     die("API Key tidak ditemukan di file .env");
 }
 
-function callAPI($method, $url) {
+function callAPI($method, $url)
+{
     $curl = curl_init();
 
     curl_setopt_array($curl, [
