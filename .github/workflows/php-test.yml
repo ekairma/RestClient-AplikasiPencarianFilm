@@ -1,4 +1,4 @@
-name: PHP Unit Testing
+name: PHPUnit Testing
 
 on:
   push:
@@ -7,15 +7,30 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  run-phpunit:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      # 1. Checkout kode dari repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: composer install --no-progress --prefer-dist
+      # 2. Setup PHP
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml
+          coverage: none
 
-    - name: Run PHPUnit tests
-      run: vendor/bin/phpunit --configuration phpunit.xml
+      # 3. Install dependency Composer (termasuk PHPUnit)
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      # 4. Set environment NEWS_API_KEY dari GitHub Secrets (untuk testing di CI)
+      - name: Export NEWS_API_KEY from secrets
+        run: echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" >> $GITHUB_ENV
+
+      # 5. Jalankan PHPUnit
+      - name: Run PHPUnit Tests
+        run: vendor/bin/phpunit --testdox
