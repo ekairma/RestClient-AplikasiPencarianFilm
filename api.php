@@ -1,18 +1,21 @@
 <?php
-// Load .env
+// Load .env secara manual (WORK di XAMPP)
 $env = parse_ini_file(__DIR__ . '/.env');
 
-$APIKEY = $env['APIKEY'] ?? null;
+$apiKey = $env['APIKEY'] ?? null;
 
-if (!$APIKEY) {
+if (!$apiKey) {
     die("API Key tidak ditemukan di file .env");
 }
 
-function callAPI($url)
-{
-    $curl = curl_init($url);
+function callAPI($method, $url) {
+    $curl = curl_init();
 
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt_array($curl, [
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => $method,
+    ]);
 
     $result = curl_exec($curl);
 

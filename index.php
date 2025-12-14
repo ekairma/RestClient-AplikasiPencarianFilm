@@ -15,7 +15,7 @@
  ?>
 <div class="menu">
     <a href="laman-judulfilm.php">Cari Film Berdasarkan Judul</a>
-
+    <a href="laman-tahunfilm.php">Cari Film Berdasarkan Tahun Rilis</a>
 </div>
 
 </body>
