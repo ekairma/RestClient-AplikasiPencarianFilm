@@ -5,10 +5,8 @@ class FileTypeTest extends TestCase
 {
     private $projectFiles = [
         'index.php',
- laman-tahunfilm
         'laman-judulfilm.php',
         'laman-tahunfilm.php',
-
         'laman-typefilm.php',
  main
     ];

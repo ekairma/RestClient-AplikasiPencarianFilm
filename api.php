@@ -16,19 +16,14 @@ $apiKey = $env['APIKEY'] ?? getenv('APIKEY') ?? 'DUMMY_KEY';
  */
 function callAPI(string $method, string $url): string
 {
- laman-tahunfilm
-function callAPI($method, $url) {
-
-function callAPI($method, $url)
-{
- main
- 
     $curl = curl_init();
 
     curl_setopt_array($curl, [
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CUSTOMREQUEST => $method,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_TIMEOUT => 10,
     ]);
 
     $result = curl_exec($curl);
@@ -36,11 +31,15 @@ function callAPI($method, $url)
     if ($result === false) {
         $error = curl_error($curl);
         curl_close($curl);
-        return json_encode([
-            'error' => $error
-        ]);
+        return json_encode(['error' => $error]);
     }
 
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     curl_close($curl);
+
+    if ($httpCode >= 400) {
+        return json_encode(['http_code' => $httpCode, 'body' => $result]);
+    }
+
     return $result;
 }
