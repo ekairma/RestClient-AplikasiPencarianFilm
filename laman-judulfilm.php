@@ -157,8 +157,8 @@ body {
         <?php
         if (!empty($_GET['judul'])) {
             $judul = urlencode($_GET['judul']);
-            $url = "https://www.omdbapi.com/?apikey=$APIKEY&s=$judul";
-            $response = callAPI($url);
+            $url = "https://www.omdbapi.com/?apikey=$apiKey&s=$judul";
+            $response = callAPI("GET",$url);
             $data = json_decode($response, true);
 
             if ($data['Response'] === "True") {

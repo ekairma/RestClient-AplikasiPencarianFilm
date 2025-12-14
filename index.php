@@ -13,6 +13,7 @@ $judul = "Selamat datang di Movie Finder!";
 echo "<h2>$judul</h2>";
 ?>
 <div class="menu">
+    <a href="laman-judulfilm.php">Cari Berdasarkan Judul</a>
     <a href="laman-typefilm.php">Cari Berdasarkan Tipe</a>
 </div>
 
