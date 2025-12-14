@@ -248,8 +248,10 @@ h1 {
         <?php
         if (!empty($_GET['judul'])) {
             $judul = urlencode($_GET['judul']);
-            $url = "https://www.omdbapi.com/?apikey=$APIKEY&s=$judul";
-            $data = json_decode(callAPI($url), true);
+            $url = "https://www.omdbapi.com/?apikey=$apiKey&s=$judul";
+            $response = callAPI("GET",$url);
+            $data = json_decode($response, true);
+
 
             if ($data['Response'] === "True") {
                 $i = 0;
