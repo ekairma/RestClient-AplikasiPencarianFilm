@@ -16,6 +16,13 @@ $apiKey = $env['APIKEY'] ?? getenv('APIKEY') ?? 'DUMMY_KEY';
  */
 function callAPI(string $method, string $url): string
 {
+ laman-tahunfilm
+function callAPI($method, $url) {
+
+function callAPI($method, $url)
+{
+ main
+ 
     $curl = curl_init();
 
     curl_setopt_array($curl, [
